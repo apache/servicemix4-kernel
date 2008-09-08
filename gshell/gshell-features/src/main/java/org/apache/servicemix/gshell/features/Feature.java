@@ -26,8 +26,6 @@ public interface Feature {
 
     String getName();
 
-    String getVersion();
-
     List<String> getDependencies();
 
     List<String> getBundles();

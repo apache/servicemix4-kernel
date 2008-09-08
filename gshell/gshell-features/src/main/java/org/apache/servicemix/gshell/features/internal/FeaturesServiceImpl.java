@@ -222,17 +222,7 @@ public class FeaturesServiceImpl implements FeaturesService, BundleContextAware 
         for (Repository repo : repositories.values()) {
             for (Feature f : repo.getFeatures()) {
             	String installStatus = f.isInstalled() ? "installed  " : "uninstalled";
-            	String version = f.getVersion();
-            	switch (version.length()) {
-            	case 1: version = "       " + version;
-            	case 2: version = "      " + version;
-            	case 3: version = "     " + version;
-            	case 4: version = "    " + version;
-            	case 5: version = "   " + version;
-            	case 6: version = "  " + version;
-            	case 7: version = " " + version;
-            	}
-                features.add("[" + installStatus + "] " + " [" + version + "] " + f.getName());
+                features.add("[" + installStatus + "] " + f.getName());
             }
         }
         return features.toArray(new String[features.size()]);

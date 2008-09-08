@@ -74,10 +74,6 @@ public class RepositoryImpl implements Repository {
                 Element e = (Element) nodes.item(i);
                 String name = e.getAttribute("name");
                 FeatureImpl f = new FeatureImpl(name);
-                String version = e.getAttribute("version");
-                if (version != null && version.length() > 0) {
-                	f.setVersion(version);
-                }
                 
                 NodeList featureNodes = e.getElementsByTagName("feature");
                 for (int j = 0; j < featureNodes.getLength(); j++) {
