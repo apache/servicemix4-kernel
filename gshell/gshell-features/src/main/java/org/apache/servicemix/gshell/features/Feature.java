@@ -32,6 +32,4 @@ public interface Feature {
 
     Map<String, Map<String, String>> getConfigurations();
 
-    boolean isInstalled();
-
 }

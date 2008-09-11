@@ -32,7 +32,7 @@ public class ListFeaturesCommand extends FeaturesCommandSupport {
             features = admin.listInstalledFeatures();
         } else {
         	// Print column headers.
-        	io.out.println("  State          Version       Name");
+        	io.out.println(" State        Name");
             features = admin.listFeatures();
         }
         if ((features != null) && (features.length > 0)) {
