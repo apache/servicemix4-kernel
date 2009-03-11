@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.apache.servicemix.kernel</groupId>
     <artifactId>org.apache.servicemix.kernel.demos</artifactId>
-    <version>1.1.x-SNAPSHOT</version>
+    <version>1.1.0</version>
   </parent>
 
   <groupId>org.apache.servicemix.kernel.demos</groupId>
@@ -268,7 +268,7 @@
                   <configuration>
                       <tasks>
                           <move todir="${project.build.directory}/kernel/WEB-INF/servicemix">
-                              <fileset dir="${project.build.directory}/kernel/WEB-INF/apache-servicemix-kernel-${pom.version}"/>
+                              <fileset dir="${project.build.directory}/kernel/WEB-INF/apache-servicemix-kernel-${pom.version}" />
                           </move>
                       </tasks>
                   </configuration>
