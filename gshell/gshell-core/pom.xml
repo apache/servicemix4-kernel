@@ -39,15 +39,10 @@
 
     <properties>
         <gshell.osgi.import>
-            org.springframework.aop,
-            org.springframework.aop.framework,
-            org.springframework.beans.factory.annotation,
-            org.springframework.context.annotation,
-            org.springframework.osgi.service.importer,
-            org.aopalliance.aop,
             org.apache.commons.vfs.provider.temp,
             org.apache.commons.vfs.provider.ram,
             jline*,
+            org.apache.geronimo.blueprint.beans,
             org.apache.servicemix.kernel.jaas.config;resolution:=optional,
             org.apache.servicemix.kernel.version;resolution:=optional, 
             org.apache.servicemix.kernel.main.spi;resolution:=optional;version="1.0.0",
@@ -55,6 +50,7 @@
             org.apache.sshd.server.keyprovider,
             org.apache.sshd.server.jaas,
             org.jsecurity*;resolution:=optional,
+            org.springframework*;resolution:=optional,
             *
         </gshell.osgi.import>
         <!-- TODO: remove plexus util package -->
@@ -68,6 +64,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.geronimo</groupId>
+            <artifactId>blueprint-bundle</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.servicemix.kernel</groupId>
             <artifactId>org.apache.servicemix.kernel.main</artifactId>
         </dependency>
@@ -79,10 +79,12 @@
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.cglib</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.springframework.osgi</groupId>
             <artifactId>spring-osgi-core</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.apache.geronimo.gshell.commands</groupId>
             <artifactId>gshell-builtin</artifactId>
@@ -139,6 +141,7 @@
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -147,6 +150,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

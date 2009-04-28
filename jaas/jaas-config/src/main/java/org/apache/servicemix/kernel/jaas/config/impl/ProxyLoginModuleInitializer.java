@@ -18,9 +18,8 @@ package org.apache.servicemix.kernel.jaas.config.impl;
 
 import org.apache.servicemix.kernel.jaas.boot.ProxyLoginModule;
 import org.osgi.framework.BundleContext;
-import org.springframework.osgi.context.BundleContextAware;
 
-public class ProxyLoginModuleInitializer implements BundleContextAware {
+public class ProxyLoginModuleInitializer {
 
     private BundleContext bundleContext;
 

@@ -47,15 +47,11 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.Constants;
 import org.osgi.framework.SynchronousBundleListener;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.osgi.context.BundleContextAware;
 
 /**
  * A deployment listener able to hot deploy a feature descriptor
  */
-public class FeatureDeploymentListener implements DeploymentListener, SynchronousBundleListener, BundleContextAware,
-                                                        InitializingBean, DisposableBean {
+public class FeatureDeploymentListener implements DeploymentListener, SynchronousBundleListener {
 
     public static final String FEATURE_PATH = "org.apache.servicemix.kernel.gshell.features";
 

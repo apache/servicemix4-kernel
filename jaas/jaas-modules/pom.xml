@@ -60,10 +60,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--
         <dependency>
             <groupId>org.springframework.osgi</groupId>
             <artifactId>spring-osgi-core</artifactId>
         </dependency>
+        -->
     </dependencies>
 
     <build>
@@ -79,7 +81,6 @@
                         </Export-Package>
                         <Import-Package>
                             org.apache.servicemix.kernel.jaas.config,
-                            org.springframework.beans.factory.config,
                             *
                         </Import-Package>
                         <Spring-Context>*;publish-context:=false;create-asynchronously:=false</Spring-Context>

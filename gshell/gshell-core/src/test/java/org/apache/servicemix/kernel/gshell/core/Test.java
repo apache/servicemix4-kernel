@@ -30,9 +30,9 @@ public class Test extends TestCase {
         ClassPathXmlApplicationContext context = null;
         try {
             context = new ClassPathXmlApplicationContext(
-                    new String[] { "META-INF/spring/gshell.xml",
-                                   "META-INF/spring/gshell-vfs.xml",
-                                   "META-INF/spring/gshell-commands.xml",
+                    new String[] {"OSGI-INF/blueprint/gshell.xml",
+                            "OSGI-INF/blueprint/gshell-vfs.xml",
+                            "OSGI-INF/blueprint/gshell-commands.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test.xml" });
             ApplicationManager appMgr = (ApplicationManager) context.getBean("applicationManager");
             assertNotNull(appMgr);
@@ -53,9 +53,9 @@ public class Test extends TestCase {
         ClassPathXmlApplicationContext context = null;
         try {
             context = new ClassPathXmlApplicationContext(
-                    new String[] { "META-INF/spring/gshell.xml",
-                                   "META-INF/spring/gshell-vfs.xml",
-                                   "META-INF/spring/gshell-commands.xml",
+                    new String[] {"OSGI-INF/blueprint/gshell.xml",
+                            "OSGI-INF/blueprint/gshell-vfs.xml",
+                            "OSGI-INF/blueprint/gshell-commands.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test.xml"});
             ApplicationManager appMgr = (ApplicationManager) context.getBean("applicationManager");
             assertNotNull(appMgr);
@@ -79,8 +79,8 @@ public class Test extends TestCase {
         ClassPathXmlApplicationContext context = null;
         try {
             context = new ClassPathXmlApplicationContext(
-                    new String[] { "META-INF/spring/gshell.xml",
-                                   "META-INF/spring/gshell-vfs.xml",
+                    new String[] {"OSGI-INF/blueprint/gshell.xml",
+                            "OSGI-INF/blueprint/gshell-vfs.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test-commands.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test.xml"});
             ApplicationManager appMgr = (ApplicationManager) context.getBean("applicationManager");
@@ -105,8 +105,8 @@ public class Test extends TestCase {
         ClassPathXmlApplicationContext context = null;
         try {
             context = new ClassPathXmlApplicationContext(
-                    new String[] { "META-INF/spring/gshell.xml",
-                                   "META-INF/spring/gshell-vfs.xml",
+                    new String[] {"OSGI-INF/blueprint/gshell.xml",
+                            "OSGI-INF/blueprint/gshell-vfs.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test-commands.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test.xml"});
             ApplicationManager appMgr = (ApplicationManager) context.getBean("applicationManager");
@@ -134,8 +134,8 @@ public class Test extends TestCase {
         ClassPathXmlApplicationContext context = null;
         try {
             context = new ClassPathXmlApplicationContext(
-                    new String[] { "META-INF/spring/gshell.xml",
-                                   "META-INF/spring/gshell-vfs.xml",
+                    new String[] {"OSGI-INF/blueprint/gshell.xml",
+                            "OSGI-INF/blueprint/gshell-vfs.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test-commands.xml",
                                    "org/apache/servicemix/kernel/gshell/core/gshell-test.xml"});
             ApplicationManager appMgr = (ApplicationManager) context.getBean("applicationManager");

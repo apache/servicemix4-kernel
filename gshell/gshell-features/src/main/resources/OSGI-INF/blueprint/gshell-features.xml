@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:gshell="http://servicemix.apache.org/schema/servicemix-gshell"
+           xmlns:osgix="http://www.osgi.org/xmlns/blueprint-compendium/v1.0.0">
+
+    <osgix:property-placeholder persistent-id="org.apache.servicemix.features">
+        <osgix:default-properties>
+            <osgix:property name="featuresRepositories" value=""/>
+            <osgix:property name="featuresBoot" value=""/>
+        </osgix:default-properties>
+    </osgix:property-placeholder>
+
+    <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="file:${servicemix.home}/etc/org.apache.servicemix.features.cfg"/>
+    </bean>
+
+    <gshell:command-bundle>
+        <gshell:command name="features/addUrl">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.AddUrlCommand"/>
+        </gshell:command>
+        <gshell:command name="features/listUrl">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.ListUrlCommand"/>
+        </gshell:command>
+        <gshell:command name="features/removeUrl">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.RemoveUrlCommand"/>
+            <gshell:completers>
+                <ref component="removeUrlCompleter"/>
+            </gshell:completers>
+        </gshell:command>
+        <gshell:command name="features/refreshUrl">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.RefreshUrlCommand"/>
+        </gshell:command>
+        <gshell:command name="features/install">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.InstallFeatureCommand"/>
+            <gshell:completers>
+                <ref component="installFeatureCompleter"/>
+            </gshell:completers>
+        </gshell:command>
+        <gshell:command name="features/uninstall">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.UninstallFeatureCommand"/>
+            <gshell:completers>
+                <ref component="uninstallFeatureCompleter"/>
+            </gshell:completers>
+        </gshell:command>
+        <gshell:command name="features/list">
+            <gshell:action class="org.apache.servicemix.kernel.gshell.features.commands.ListFeaturesCommand"/>
+        </gshell:command>
+    </gshell:command-bundle>
+
+    <bean id="featuresService" class="org.apache.servicemix.kernel.gshell.features.internal.FeaturesServiceImpl"
+          init-method="start" destroy-method="stop">
+        <property name="bundleContext" ref="bundleContext"/>
+        <property name="urls" value="${featuresRepositories}"/>
+        <property name="boot" value="${featuresBoot}"/>
+        <property name="configAdmin" ref="configAdmin"/>
+        <property name="preferences" ref="preferences"/>
+        <property name="featuresServiceRegistry" ref="featureServiceRegistry"/>
+    </bean>
+
+    <bean id="featureDeploymentListener" class="org.apache.servicemix.kernel.gshell.features.internal.FeatureDeploymentListener" init-method="afterPropertiesSet" destroy-method="destroy">
+        <property name="bundleContext" ref="bundleContext"/>
+        <property name="featuresService" ref="featuresService"/>
+    </bean>
+
+    <bean id="namingStrategy" class="org.apache.servicemix.kernel.gshell.features.management.DefaultNamingStrategy">
+        <property name="jmxDomainName" value="org.apache.servicemix"/>
+    </bean>
+
+    <bean id="managementAgent" class="org.apache.servicemix.kernel.gshell.features.management.ManagementAgent">
+        <property name="mbeanServer" ref="mbeanServer"/>
+    </bean>
+
+    <bean id="featureServiceRegistry"
+          class="org.apache.servicemix.kernel.gshell.features.management.ManagedFeaturesRegistry"
+          init-method="afterPropertiesSet">
+        <property name="managementAgent" ref="managementAgent"/>
+        <property name="namingStrategy" ref="namingStrategy"/>
+        <property name="featuresService" ref="featuresService"/>
+    </bean>
+
+    <reference id="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin"/>
+
+    <reference id="preferences" interface="org.osgi.service.prefs.PreferencesService" availability="optional"/>
+
+    <service ref="featuresService" interface="org.apache.servicemix.kernel.gshell.features.FeaturesService"/>
+
+    <service ref="featureDeploymentListener" interface="org.apache.servicemix.kernel.filemonitor.DeploymentListener"/>
+
+    <reference id="mbeanServer" interface="javax.management.MBeanServer" availability="optional">
+        <listener ref="featureServiceRegistry" bind-method="registerMBeanServer" unbind-method=""/>
+    </reference>
+
+    <bean id="installFeatureCompleter"
+          class="org.apache.servicemix.kernel.gshell.features.completers.AvailableFeatureCompleter">
+        <property name="featuresRegistry" ref="featureServiceRegistry"/>
+    </bean>
+
+    <bean id="uninstallFeatureCompleter"
+          class="org.apache.servicemix.kernel.gshell.features.completers.InstalledFeatureCompleter">
+        <property name="featuresRegistry" ref="featureServiceRegistry"/>
+    </bean>
+
+    <bean id="removeUrlCompleter"
+          class="org.apache.servicemix.kernel.gshell.features.completers.FeatureRepositoryCompleter">
+        <property name="featuresRegistry" ref="featureServiceRegistry"/>
+    </bean>
+
+</blueprint>

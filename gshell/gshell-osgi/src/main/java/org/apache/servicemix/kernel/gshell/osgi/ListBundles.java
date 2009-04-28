@@ -35,14 +35,14 @@ public class ListBundles extends OsgiCommandSupport {
     @Option(name = "-u", description = "Show update")
     boolean showUpdate;
 
-    private SpringApplicationListener springApplicationListener;
+    private GShellBlueprintContextListener blueprintApplicationListener;
 
-    public SpringApplicationListener getSpringApplicationListener() {
-        return springApplicationListener;
+    public GShellBlueprintContextListener getBlueprintApplicationListener() {
+        return blueprintApplicationListener;
     }
 
-    public void setSpringApplicationListener(SpringApplicationListener springApplicationListener) {
-        this.springApplicationListener = springApplicationListener;
+    public void setBlueprintApplicationListener(GShellBlueprintContextListener blueprintApplicationListener) {
+        this.blueprintApplicationListener = blueprintApplicationListener;
     }
 
     protected Object doExecute() throws Exception {
@@ -189,12 +189,12 @@ public class ListBundles extends OsgiCommandSupport {
     }
 
     public String getSpringStateString(Bundle bundle) {
-        SpringApplicationListener.SpringState state = springApplicationListener.getSpringState(bundle);
-        if (state == SpringApplicationListener.SpringState.Waiting) {
+        GShellBlueprintContextListener.BlueprintState state = blueprintApplicationListener.getBlueprintState(bundle);
+        if (state == GShellBlueprintContextListener.BlueprintState.Waiting) {
             return "Waiting";
-        } else if (state == SpringApplicationListener.SpringState.Started) {
+        } else if (state == GShellBlueprintContextListener.BlueprintState.Started) {
             return "Started";
-        } else if (state == SpringApplicationListener.SpringState.Failed) {
+        } else if (state == GShellBlueprintContextListener.BlueprintState.Failed) {
             return "Failed ";
         } else {
             return "       ";

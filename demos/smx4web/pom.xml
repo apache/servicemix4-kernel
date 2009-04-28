@@ -58,7 +58,7 @@
             </exclusion>
             <exclusion>
                 <groupId>org.apache.servicemix.kernel</groupId>
-                <artifactId>org.apache.servicemix.kernel.spring</artifactId>
+                <artifactId>org.apache.servicemix.kernel.blueprint</artifactId>
             </exclusion>
             <exclusion>
                 <groupId>org.apache.servicemix.kernel.gshell</groupId>

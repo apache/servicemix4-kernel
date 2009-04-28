@@ -17,17 +17,13 @@
     limitations under the License.
 
 -->
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:osgi="http://www.springframework.org/schema/osgi"
-       xmlns:jaas="http://servicemix.apache.org/jaas"
-       xsi:schemaLocation="
-  http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans.xsd
-  http://www.springframework.org/schema/osgi
-  http://www.springframework.org/schema/osgi/spring-osgi.xsd
-  http://servicemix.apache.org/jaas
-  http://servicemix.apache.org/schema/servicemix-jaas.xsd">
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:jaas="http://servicemix.apache.org/xmlns/jaas/v1.0.0">
+
+    <type-converters>
+        <!-- Bean to allow the ${servicemix.home} property to be correctly resolved -->
+        <bean class="org.apache.geronimo.blueprint.beans.SystemPropertyPlaceholder"/>
+    </type-converters>
 
     <!--
       - The following beans define an alternate realm which uses the OSGi Configuration Admin service
@@ -48,13 +44,10 @@
     </jaas:config>
     -->
 
-    <!-- Bean to allow the ${servicemix.home} property to be correctly resolved -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" />
-
     <jaas:config id="servicemix">
         <jaas:module className="org.apache.servicemix.kernel.jaas.modules.properties.PropertiesLoginModule" flags="required">
             users = ${servicemix.base}/etc/users.properties
         </jaas:module>
     </jaas:config>
 
-</beans>
+</blueprint>

@@ -29,13 +29,15 @@ import java.util.jar.JarInputStream;
 import javax.xml.transform.dom.DOMSource;
 
 import junit.framework.TestCase;
+import org.apache.servicemix.kernel.blueprint.BlueprintDeploymentListener;
+import org.apache.servicemix.kernel.blueprint.BlueprintTransformer;
 
 public class SpringDeploymentListenerTest extends TestCase {
 
     public void testPackagesExtraction() throws Exception {
-        SpringDeploymentListener l = new SpringDeploymentListener();
-        File f = new File(getClass().getClassLoader().getResource("META-INF/spring/spring-deployer.xml").toURI());
-        Set<String> pkgs = SpringTransformer.analyze(new DOMSource(SpringTransformer.parse(f.toURL())));
+        BlueprintDeploymentListener l = new BlueprintDeploymentListener();
+        File f = new File(getClass().getClassLoader().getResource("OSGI-INF/blueprint/blueprint-deployer.xml").toURI());
+        Set<String> pkgs = BlueprintTransformer.analyze(new DOMSource(BlueprintTransformer.parse(f.toURL())));
         assertNotNull(pkgs);
         assertEquals(2, pkgs.size());
         Iterator<String> it = pkgs.iterator();
@@ -47,7 +49,7 @@ public class SpringDeploymentListenerTest extends TestCase {
         File f = File.createTempFile("smx", ".jar");
         try {
             OutputStream os = new FileOutputStream(f);
-            SpringTransformer.transform(getClass().getClassLoader().getResource("test.xml"), os);
+            BlueprintTransformer.transform(getClass().getClassLoader().getResource("test.xml"), os);
             os.close();
             InputStream is = new FileInputStream(f);
             JarInputStream jar = new JarInputStream(is);
@@ -74,7 +76,7 @@ public class SpringDeploymentListenerTest extends TestCase {
     }
 
     private void assertVersion(String s, String... expectedParts) {
-        String[] parts = SpringTransformer.extractNameVersionType(s);
+        String[] parts = BlueprintTransformer.extractNameVersionType(s);
         assertEquals(expectedParts.length, parts.length);
         for (int i = 0; i < expectedParts.length; i++) {
             assertEquals(expectedParts[i], parts[i]);

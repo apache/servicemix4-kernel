@@ -28,7 +28,7 @@
     </parent>
 
     <groupId>org.apache.servicemix.kernel</groupId>
-    <artifactId>org.apache.servicemix.kernel.spring</artifactId>
+    <artifactId>org.apache.servicemix.kernel.blueprint</artifactId>
     <packaging>bundle</packaging>
     <version>1.2.0-blueprint-SNAPSHOT</version>
     <name>Apache ServiceMix Kernel :: Spring Deployer</name>
@@ -41,10 +41,12 @@
             <artifactId>org.osgi.core</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.springframework.osgi</groupId>
             <artifactId>spring-osgi-core</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.apache.servicemix.kernel</groupId>
             <artifactId>org.apache.servicemix.kernel.filemonitor</artifactId>
@@ -63,7 +65,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-                        <Private-Package>org.apache.servicemix.kernel.spring</Private-Package>
+                        <Private-Package>org.apache.servicemix.kernel.blueprint</Private-Package>
                         <Spring-Context>*;publish-context:=false;create-asynchronously:=false</Spring-Context>
                     </instructions>
                 </configuration>

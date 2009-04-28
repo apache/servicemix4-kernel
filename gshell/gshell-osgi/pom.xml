@@ -49,6 +49,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--
         <dependency>
             <groupId>org.springframework.osgi</groupId>
             <artifactId>spring-osgi-core</artifactId>
@@ -58,6 +59,7 @@
             <groupId>org.springframework.osgi</groupId>
             <artifactId>spring-osgi-extender</artifactId>
         </dependency>
+        -->
     </dependencies>
 
     <build>

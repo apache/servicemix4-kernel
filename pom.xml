@@ -39,12 +39,16 @@
         <module>filemonitor</module>
         <module>gshell</module>
         <module>spring</module>
+        <!--
         <module>testing</module>
+        -->
         <module>jaas</module>
         <module>client</module>
         <module>management</module>
         <module>assembly</module>
+        <!--
         <module>demos</module>
+        -->
     </modules>
 
     <scm>
@@ -84,6 +88,7 @@
         <felix.bundlerepository.version>1.2.1</felix.bundlerepository.version>
         <felix.prefs.version>1.0.2</felix.prefs.version>
         <geronimo.annotation.version>1.1.1</geronimo.annotation.version>
+        <geronimo.blueprint.version>1.0.0-SNAPSHOT</geronimo.blueprint.version>
         <geronimo.servlet.version>1.1.2</geronimo.servlet.version>
         <gshell.version>1.0-alpha-2</gshell.version>
         <jaxp.ri.version>1.4.2_1</jaxp.ri.version>
@@ -197,7 +202,7 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.servicemix.kernel</groupId>
-                <artifactId>org.apache.servicemix.kernel.spring</artifactId>
+                <artifactId>org.apache.servicemix.kernel.blueprint</artifactId>
                 <version>${pom.version}</version>
             </dependency>
             <dependency>
@@ -248,6 +253,11 @@
             <dependency>
                 <groupId>org.apache.servicemix.kernel.gshell</groupId>
                 <artifactId>org.apache.servicemix.kernel.gshell.packages</artifactId>
+                <version>${pom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.servicemix.kernel.gshell</groupId>
+                <artifactId>org.apache.servicemix.kernel.gshell.run</artifactId>
                 <version>${pom.version}</version>
             </dependency>
             <dependency>
@@ -352,6 +362,12 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>org.apache.geronimo</groupId>
+                <artifactId>blueprint-bundle</artifactId>
+                <version>${geronimo.blueprint.version}</version>
+            </dependency>
+            <!--
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
@@ -420,6 +436,7 @@
                 <artifactId>spring-osgi-annotation</artifactId>
                 <version>${spring.osgi.version}</version>
             </dependency>
+            -->
             <dependency>
                 <groupId>org.apache.mina</groupId>
                 <artifactId>mina-core</artifactId>

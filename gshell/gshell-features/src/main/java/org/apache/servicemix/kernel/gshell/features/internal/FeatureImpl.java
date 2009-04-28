@@ -22,13 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.servicemix.kernel.gshell.features.Feature;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
-import org.springframework.jmx.export.annotation.ManagedResource;
 
 /**
  * A feature
  */
-@ManagedResource(description = "Managed Feature", currencyTimeLimit = 15)
+//@ManagedResource(description = "Managed Feature", currencyTimeLimit = 15)
 public class FeatureImpl implements Feature {
 
     private String id;
@@ -50,17 +48,17 @@ public class FeatureImpl implements Feature {
         this.id = name + "-" + version;
     }
 
-    @ManagedAttribute(description = "Feature Unique ID")
+//    @ManagedAttribute(description = "Feature Unique ID")
     public String getId() {
         return id;
     }
 
-    @ManagedAttribute(description = "Feature Name")
+//    @ManagedAttribute(description = "Feature Name")
     public String getName() {
         return name;
     }
 
-    @ManagedAttribute(description = "Feature Version")
+//    @ManagedAttribute(description = "Feature Version")
     public String getVersion() {
 		return version;
 	}
@@ -69,7 +67,7 @@ public class FeatureImpl implements Feature {
 		this.version = version;
 	}
 
-    @ManagedAttribute(description = "List of Dependencies")
+//    @ManagedAttribute(description = "List of Dependencies")
     public List<Feature> getDependencies() {
         return dependencies;
     }

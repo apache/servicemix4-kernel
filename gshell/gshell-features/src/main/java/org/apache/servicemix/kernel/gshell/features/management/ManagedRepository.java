@@ -21,11 +21,8 @@ import java.net.URI;
 import org.apache.servicemix.kernel.gshell.features.Feature;
 import org.apache.servicemix.kernel.gshell.features.FeaturesService;
 import org.apache.servicemix.kernel.gshell.features.Repository;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
-import org.springframework.jmx.export.annotation.ManagedOperation;
-import org.springframework.jmx.export.annotation.ManagedResource;
 
-@ManagedResource(description = "Features Repository")
+//@ManagedResource(description = "Features Repository")
 public class ManagedRepository {
     private Repository repository;
     private FeaturesService featuresService;
@@ -35,22 +32,22 @@ public class ManagedRepository {
         this.featuresService = featuresService;
     }
 
-    @ManagedAttribute
+//    @ManagedAttribute
     public URI getUri() {
         return repository.getURI();
     }
 
-    @ManagedAttribute
+//    @ManagedAttribute
     public URI[] getRepositories() throws Exception {
         return repository.getRepositories();
     }
 
-    @ManagedAttribute
+//    @ManagedAttribute
     public Feature[] getFeatures() throws Exception {
         return repository.getFeatures();
     }
 
-    @ManagedOperation
+//    @ManagedOperation
     public void removeRepository() throws Exception {
         featuresService.removeRepository(repository.getURI());
     }

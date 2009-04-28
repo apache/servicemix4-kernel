@@ -21,15 +21,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.InitializingBean;
-
 /**
  * 
  * @author gnodet
  */
-public class RmiRegistryFactoryBean implements FactoryBean, InitializingBean, DisposableBean {
+public class RmiRegistryFactoryBean {
 
     private int port = Registry.REGISTRY_PORT;
     private Registry registry;
@@ -91,7 +87,7 @@ public class RmiRegistryFactoryBean implements FactoryBean, InitializingBean, Di
         return true;
     }
 
-    public void afterPropertiesSet() throws RemoteException {
+    public void init() throws RemoteException {
         if (registry == null && locate) {
             try {
                 Registry reg = LocateRegistry.getRegistry(getPort());

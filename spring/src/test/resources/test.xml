@@ -34,7 +34,7 @@
         Header=value
     </manifest>
 
-    <bean id="springDeploymentListener" class="org.apache.servicemix.kernel.spring.SpringDeploymentListener">
+    <bean id="springDeploymentListener" class="org.apache.servicemix.kernel.blueprint.BlueprintDeploymentListener">
 
     </bean>
 
@@ -44,7 +44,7 @@
         </osgi:interfaces>
     </osgi:service>
 
-    <bean id="springHandler" class="org.apache.servicemix.kernel.spring.SpringURLHandler" />
+    <bean id="springHandler" class="org.apache.servicemix.kernel.blueprint.BlueprintURLHandler" />
 
     <osgi:service ref="springHandler" interface="org.osgi.service.url.URLStreamHandlerService">
     	<osgi:service-properties>

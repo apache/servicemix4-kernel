@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.servicemix.kernel</groupId>
-            <artifactId>org.apache.servicemix.kernel.spring</artifactId>
+            <artifactId>org.apache.servicemix.kernel.blueprint</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.servicemix.kernel.gshell</groupId>
@@ -83,6 +83,10 @@
             <artifactId>org.apache.servicemix.kernel.gshell.packages</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.servicemix.kernel.gshell</groupId>
+            <artifactId>org.apache.servicemix.kernel.gshell.run</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.servicemix.kernel.jaas</groupId>
             <artifactId>org.apache.servicemix.kernel.jaas.boot</artifactId>
         </dependency>
@@ -97,34 +101,6 @@
         <dependency>
             <groupId>org.apache.servicemix.kernel</groupId>
             <artifactId>org.apache.servicemix.kernel.management</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>spring-osgi-extender</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>spring-osgi-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>spring-osgi-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.felix</groupId>
